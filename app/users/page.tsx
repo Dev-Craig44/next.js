@@ -8,7 +8,7 @@ interface User {
 const UsersPage = async () => {
   // give the [data url] to the {fetch} function. await it and put it in a [res] variable
   const res = await fetch("https://jsonplaceholder.typicode.com/users", {
-    next: { revalidate: 10 },
+    cache: "no-store",
   });
   // cache: "no store" for when you have fast changing data
   // to keep data fresh for a certain amount of time you set next: { revalidate: 10 } which means it get infoomation every 10 seconds
@@ -20,6 +20,7 @@ const UsersPage = async () => {
   return (
     <>
       <h1>Users</h1>
+      <p>{new Date().toLocaleTimeString()}</p>
       <ul>
         {users.map((user) => (
           <li key={user.id}>
