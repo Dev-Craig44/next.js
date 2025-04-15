@@ -1,0 +1,5 @@
+/* now we can define classes that are scoped to this product card component without worrying if we define this somwhere else it would clash */
+.card {
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
