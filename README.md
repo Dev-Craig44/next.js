@@ -98,3 +98,5 @@ npm start
 - **Data Fetching**: Server components are ideal for fetching data as they avoid extra server trips, making applications faster and more search-engine friendly.
 
 ---
+
+I'm lerning global styles, CSS modules, Tailwind CSS, and DaisyUI in Next.js. I will add more information about these topics later.
