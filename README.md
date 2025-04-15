@@ -99,4 +99,22 @@ npm start
 
 ---
 
-I'm lerning global styles, CSS modules, Tailwind CSS, and DaisyUI in Next.js. I will add more information about these topics later.
+## Styling in Next.js
+
+I'm learning global styles, CSS modules, Tailwind CSS, and DaisyUI in Next.js. I will add more information about these topics later.
+
+This project uses a tool called PostCSS for transforming our CSS class names.  
+For example: `ProductCard` becomes `ProductCard_Kyhe2`.
+
+### Tailwind CSS Utilities
+
+- **Spacing**: `px`, `py`, `pt`, `pb`, `pl`, `pr`, `mx`, `my`, `mt`, `mb`, `ml`, `mr`
+- **Size**: `text-sm`, `text-lg`, `text-2xl`
+- **Colors**: `text-red-500`, `bg-blue-200`
+- **Thickness**: `font-thin`, `font-light`, `font-normal`, `font-medium`, `font-semibold`, `font-bold`
+
+### Why Use Tailwind CSS?
+
+Some believe inline styling violates the separation of concerns principle. However, the principle is about organizing code into distinct sections or modules, each with its own concerns. Tailwind CSS helps by only including the utility classes used in the final bundle, improving performance.
+
+While CSS files can grow messy as projects scale, Tailwind CSS avoids this by keeping styles modular and scoped to the markup.
