@@ -34,3 +34,5 @@ Catch-all Segments
 - we should be able to pass atleast one parameter into the slug
 - to make the slug optional we can use double brackets
 - for example, [[...slug]]
+
+Accessing Query String Parameters
