@@ -23,7 +23,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    // add data-theme="dark" to html tag (note from the documentation)
+    <html lang="en" data-theme="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

@@ -1,5 +1,8 @@
 @import "tailwindcss";
-@plugin "daisyui";
+/* add daisyui import in the global.css file */
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
 
 :root {
   --foreground: #171717;
