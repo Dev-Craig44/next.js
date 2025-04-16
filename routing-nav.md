@@ -40,3 +40,11 @@ Accessing Query String Parameters
 | add a link to our table headers |
 
 - so when we click on the link sortorder is set in the query string
+
+Layouts
+
+- layouts are used to create UIs that are shared between multiple pages
+
+- the root layout that we have in the app folder defines the common UI for all our pages, whereas the layout that we have in the admin folder defines the common UI for all our admin pages
+
+#Exercise - add a navigation bar to all our pages
