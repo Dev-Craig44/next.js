@@ -19,3 +19,8 @@ special files
 Dynamic Routes
 
 - create dynamic routes for users and photos
+
+Catch-all Segments
+
+- sometimes we need varying number of parameters in a route.
+- for example, you might want to go to /products/grocery/dairy/milk
