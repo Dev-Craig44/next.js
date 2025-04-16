@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import NavBar from "./NavBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,6 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    // |exercise| you're going to want to put the nav in the body
+    // i prefer to implement it in a separate component and use it here cause I don't want to dirty this shit up. keep it nice
     // add data-theme="dark" to html tag (note from the documentation)
     <html lang="en" data-theme="dark">
       <body
@@ -30,7 +33,10 @@ export default function RootLayout({
       >
         {/* we can also create nested layouts, for example, if all our admin need a particular layout we can create a custom layout for our admin area  */}
         {/* we are rendering children here which can be a page at run time */}
-        {children}
+        {/* first lets render our NavBar before children */}
+        <NavBar />
+        {/*render children in the main area*/}
+        <main className="p-5">{children}</main>
       </body>
     </html>
   );
