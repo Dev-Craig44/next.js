@@ -1,3 +1,5 @@
+// import [sort] from "fast-sort"
+import { sort } from "fast-sort";
 import Link from "next/link";
 
 interface User {
@@ -6,7 +8,12 @@ interface User {
   email: string;
 }
 
-const UserTable = async () => {
+// define an interface for the UserTable component
+interface Props {
+  sortOrder: string;
+}
+// add the sortOrder prop to the UserTable component
+const UserTable = async ({ sortOrder }: Props) => {
   // give the [data url] to the {fetch} function. await it and put it in a [res] variable
   const res = await fetch("https://jsonplaceholder.typicode.com/users", {
     cache: "no-store",
@@ -18,9 +25,15 @@ const UserTable = async () => {
   // use the [res] {json} method to convert the response to JSON and put it in a [users] variable.
   const users: User[] = await res.json();
 
+  // pass tenary operator [sortOrder === 'email' ? user => user.email : user => user.name] to the {asc} method after you pass the [users] array to the {sort} function and put this in a [sortedUsers] variable
+  const sortedUsers = sort(users).asc(
+    sortOrder === "email" ? (user) => user.email : (user) => user.name
+  );
+
   // add the ability to sort the list by name or email
   // so when we click on the name, we should see sortOrder in the query string and the table should be sorted by name
   // look up "fast sort npm" (https://www.npmjs.com/package/fast-sort) and install it
+  // we need to access query string parameters, and we can not do that in our components so anytime we need to access URL parameters we need to do it in the page.tsx file and pass it down to the component
   return (
     <table className="table table-bordered">
       <thead>
@@ -38,7 +51,7 @@ const UserTable = async () => {
         </tr>
       </thead>
       <tbody>
-        {users.map((user) => (
+        {sortedUsers.map((user) => (
           <tr key={user.id}>
             <td>{user.name}</td>
             <td>{user.email}</td>

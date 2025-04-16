@@ -1,14 +1,21 @@
 // define an interface for the User object
-
+// on this page we can access our query string parameters
 import UserTable from "./UserTable";
 
-const UsersPage = async () => {
+interface Props {
+  searchParams: {
+    sortOrder: string;
+  };
+}
+
+const UsersPage = async ({ searchParams: { sortOrder } }: Props) => {
   return (
     <>
       <h1>Users</h1>
       {/* change ul to a table */}
       {/* i did not put the UserTable in a general components folder because this component is only being used here*/}
-      <UserTable />
+      {/* we can pass the sortOrder to the UserTable component */}
+      <UserTable sortOrder={sortOrder} />
     </>
   );
 };
