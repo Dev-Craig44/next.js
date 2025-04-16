@@ -52,3 +52,13 @@ Layouts
 -our h1 element is rendered without any styles because by default, when we use tailwind, our elements are unstyled
 
 - to fix this we need to add a global style to our app
+
+Link
+
+- you'll learn how to navigate between pages in your app using the Link component
+
+# 3 things you should know
+
+- only downloads the content of the target page
+- prefetches links that are in the viewport
+- caches pages on the client (so next time we go to a page that we have seen before, Next.js is not going to make a request to the backend, it's going to pull out that page from its client cache)
