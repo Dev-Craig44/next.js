@@ -48,3 +48,7 @@ Layouts
 - the root layout that we have in the app folder defines the common UI for all our pages, whereas the layout that we have in the admin folder defines the common UI for all our admin pages
 
 #Exercise - add a navigation bar to all our pages
+
+-our h1 element is rendered without any styles because by default, when we use tailwind, our elements are unstyled
+
+- to fix this we need to add a global style to our app

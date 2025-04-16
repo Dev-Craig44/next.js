@@ -23,7 +23,13 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  padding: 1rem;
+}
+
+/* use another directive for overriding the styles in the base layer */
+@layer base {
+  h1 {
+    @apply text-3xl font-extrabold mb-3;
+  }
 }
 
 /* Only make changes in this file if they are truly global. */
