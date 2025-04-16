@@ -15,3 +15,5 @@ special files
 - route.tsx (creating API routes)
 - not-found.tsx (for showing custom arrows)
 - error.tsx (for showing genereal custom errors)
+
+Dynamic Routes
