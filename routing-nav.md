@@ -24,3 +24,9 @@ Catch-all Segments
 
 - sometimes we need varying number of parameters in a route.
 - for example, you might want to go to /products/grocery/dairy/milk
+
+|create products folder and a [...slug] folder|
+
+- we call is slug because it can contain any value
+
+| create a page.tsx (ProductPage) file [...slug] |
