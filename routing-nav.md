@@ -17,3 +17,5 @@ special files
 - error.tsx (for showing genereal custom errors)
 
 Dynamic Routes
+
+- create dynamic routes for users and photos
