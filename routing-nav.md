@@ -30,3 +30,7 @@ Catch-all Segments
 - we call is slug because it can contain any value
 
 | create a page.tsx (ProductPage) file [...slug] |
+
+- we should be able to pass atleast one parameter into the slug
+- to make the slug optional we can use double brackets
+- for example, [[...slug]]
