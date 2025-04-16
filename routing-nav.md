@@ -36,3 +36,7 @@ Catch-all Segments
 - for example, [[...slug]]
 
 Accessing Query String Parameters
+
+| add a link to our table headers |
+
+- so when we click on the link sortorder is set in the query string
