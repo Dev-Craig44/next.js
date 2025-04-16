@@ -62,3 +62,7 @@ Link
 - only downloads the content of the target page
 - prefetches links that are in the viewport
 - caches pages on the client (so next time we go to a page that we have seen before, Next.js is not going to make a request to the backend, it's going to pull out that page from its client cache)
+
+Programmatic Navigation
+
+- sometimes we need to take the user to a new page as a result of clicking a button or submitting a form
