@@ -82,3 +82,7 @@ Handling Not Found Errors
 - if you go to page that doesn't exist, you get a 404 error, but we can always customize it.
 - we can create a not-found.tsx file in the app folder and add our custom error message
 - you can also create a not-found.tsx file in the users folder and add a custom error message for the users page
+
+Handling Unexpected Errors
+
+- we can create a error.tsx file in the app folder and add our custom error messages
