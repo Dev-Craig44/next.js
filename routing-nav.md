@@ -86,3 +86,43 @@ Handling Not Found Errors
 Handling Unexpected Errors
 
 - we can create a error.tsx file in the app folder and add our custom error messages
+
+🔄 ⚠️ New Breaking Change in Next.js 15 – params and searchParams Are Now Promises
+
+In Next.js 15, when building pages with Dynamic Routes, both params and searchParams are now Promises by default. Here’s what you need to know:
+• params must be awaited, because it’s no longer a plain object.
+• searchParams, if used, should also be awaited.
+• Your route component must be declared as an async function.
+
+✅ Updated Syntax for Dynamic Route Pages in Next.js 15
+
+export default async function ProductPage({
+params,
+searchParams,
+}: {
+params: Promise<{ slug?: string[] }>;
+searchParams?: Promise<{ sortOrder?: string }>;
+}) {
+const { slug } = await params;
+const { sortOrder } = (await searchParams) ?? {};
+
+return (
+
+ProductPage {slug?.join(”/”)} - Sorted by {sortOrder ?? “default”}
+
+);
+}
+
+🧠 Summary
+
+If you encounter build errors like:
+
+Type ‘{ slug?: string[] }’ is missing the following properties from type ‘Promise’: then, catch, finally, [Symbol.toStringTag]
+
+…it means you’re treating params as a regular object instead of a Promise.
+
+✅ Fix:
+• Mark the component async
+• Await both params and searchParams
+
+This change aligns with Next.js 15’s Server Component streaming model and enables more efficient routing, but it’s a breaking change if you’re coming from version 14 or earlier.

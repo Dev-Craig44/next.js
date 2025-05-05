@@ -1,23 +1,21 @@
-// create interface with [slug] as string[] and use it in the component
-interface Props {
-  params: { slug: string[] };
+// ✅ We no longer use a separate interface because Next.js 15 expects params/searchParams to be typed inline in the component function
 
-  // to access query string parameters we use a different method called useSearchParams
-  searchParams: { sortOrder: string };
-}
-// destructure [params] from [Props]
-//destructure [slug] from [params]
-// destructure [searchParams] from [Props]
-// destructure [sortOrder] from [searchParams]
-const ProductPage = ({
-  params: { slug },
-  searchParams: { sortOrder },
-}: Props) => {
+// ✅ The component must be an async function to work with Next.js 15's server routing model
+export default async function ProductPage({
+  // ✅ Destructure slug from params, which is provided by Next.js
+  params,
+  // ✅ Destructure sortOrder from searchParams if it exists (optional)
+  searchParams,
+}: {
+  params: Promise<{ slug?: string[] }>; // ✅ Optional catch-all route ([...slug])
+  searchParams: Promise<{ sortOrder?: string }>; // ✅ Optional query string (?sortOrder=name)
+}) {
+  const { slug } = await params; // ✅ Await the promise to get the actual slug value
+  const { sortOrder } = await searchParams; // ✅ Await the promise to get the actual sortOrder value
   return (
     <div>
-      ProductPage {slug} {sortOrder}
+      {/* ✅ Safely handle optional slug and sortOrder */}
+      ProductPage {slug?.join("/")} - Sorted by {sortOrder ?? "default"}
     </div>
   );
-};
-
-export default ProductPage;
+}

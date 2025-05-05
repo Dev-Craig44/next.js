@@ -1,13 +1,15 @@
-interface Props {
-  params: { id: number; photoId: number };
-}
+// ✅ Access route parameters for nested dynamic segments using Next.js 15 conventions
+export default async function PhotoDetailPage({
+  // ✅ Destructure both `id` and `photoId` from the awaited `params` prop
+  params,
+}: {
+  params: Promise<{ id: string; photoId: string }>; // 🧠 Route params are always strings in the URL
+}) {
+  const { id, photoId } = await params;
 
-const PhotoDetailPage = ({ params: { id, photoId } }: Props) => {
   return (
     <div>
       User: {id} Photo: {photoId}
     </div>
   );
-};
-
-export default PhotoDetailPage;
+}
