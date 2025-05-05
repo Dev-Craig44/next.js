@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import NavBar from "./NavBar";
 
@@ -36,7 +37,9 @@ export default function RootLayout({
         {/* first lets render our NavBar before children */}
         <NavBar />
         {/*render children in the main area*/}
-        <main className="p-5">{children}</main>
+        <main className="p-5">
+          <Suspense>{children}</Suspense>
+        </main>
       </body>
     </html>
   );

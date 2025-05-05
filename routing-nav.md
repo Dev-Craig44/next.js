@@ -72,3 +72,7 @@ Showing Loading UIs
 - when we navigate to a new page, we want to show a loading UI
 - a good way to toggle the suspending state is to use the components tab in the dev tools, find the suspense coponent and click the stopwatch button is see how the client is going to look like when the data is being fetched
 - you would think that because the client sees the loading UI, the server should also see it, but that's not the case. it doesn't close the connection, it will wait for the data to be fetched and then send the response to the client. This is called streaming.
+
+- what if we wanted to put every page inside a suspense component?
+  1.) we could go to the root layout component and wrap the children with a suspense component
+  2.) we could add a loading.tsx file to the app folder
