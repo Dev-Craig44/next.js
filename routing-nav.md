@@ -66,3 +66,7 @@ Link
 Programmatic Navigation
 
 - sometimes we need to take the user to a new page as a result of clicking a button or submitting a form
+
+Showing Loading UIs
+
+- when we navigate to a new page, we want to show a loading UI
