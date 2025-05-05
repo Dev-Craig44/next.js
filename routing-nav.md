@@ -70,3 +70,5 @@ Programmatic Navigation
 Showing Loading UIs
 
 - when we navigate to a new page, we want to show a loading UI
+- a good way to toggle the suspending state is to use the components tab in the dev tools, find the suspense coponent and click the stopwatch button is see how the client is going to look like when the data is being fetched
+- you would think that because the client sees the loading UI, the server should also see it, but that's not the case. it doesn't close the connection, it will wait for the data to be fetched and then send the response to the client. This is called streaming.

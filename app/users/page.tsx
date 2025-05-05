@@ -1,6 +1,7 @@
 // define an interface for the User object
 // on this page we can access our query string parameters
 import Link from "next/link";
+import { Suspense } from "react";
 import UserTable from "./UserTable";
 
 interface Props {
@@ -20,7 +21,10 @@ const UsersPage = async ({ searchParams: { sortOrder } }: Props) => {
       <Link href="/users/new" className="btn btn-primary">
         New User
       </Link>
-      <UserTable sortOrder={sortOrder} />
+      {/* create suspense component to put the UserTable in  */}
+      <Suspense fallback={<p>Loading...</p>}>
+        <UserTable sortOrder={sortOrder} />
+      </Suspense>
     </>
   );
 };
