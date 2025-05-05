@@ -76,3 +76,9 @@ Showing Loading UIs
 - what if we wanted to put every page inside a suspense component?
   1.) we could go to the root layout component and wrap the children with a suspense component
   2.) we could add a loading.tsx file to the app folder
+
+Handling Not Found Errors
+
+- if you go to page that doesn't exist, you get a 404 error, but we can always customize it.
+- we can create a not-found.tsx file in the app folder and add our custom error message
+- you can also create a not-found.tsx file in the users folder and add a custom error message for the users page
