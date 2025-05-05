@@ -86,8 +86,11 @@ Handling Not Found Errors
 Handling Unexpected Errors
 
 - we can create a error.tsx file in the app folder and add our custom error messages
+- we also can create a error.tsx file in the users folder and add a custom error message for the users page
+- one thing we should know is that we can not capture errors that happen in our route layout
+- the route layout in simple right now, but in complex applications, if you have some logic here that could potentially cause an error, you need to create a separate error for capturing errors in this layout. which is called global-error.tsx
 
-🔄 ⚠️ New Breaking Change in Next.js 15 – params and searchParams Are Now Promises
+  🔄 ⚠️ New Breaking Change in Next.js 15 – params and searchParams Are Now Promises
 
 In Next.js 15, when building pages with Dynamic Routes, both params and searchParams are now Promises by default. Here’s what you need to know:
 • params must be awaited, because it’s no longer a plain object.
