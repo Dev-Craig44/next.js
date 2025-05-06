@@ -1,4 +1,7 @@
-Things to learn:
+
+## 📡 Building APIs in Next.js 15
+
+### What You’ll Learn
 
 - Getting objects
 - Creating objects
@@ -6,36 +9,74 @@ Things to learn:
 - Deleting objects
 - Validating requests with Zod
 
-Getting a Collection of Objects
+---
 
-- in a gived folder or URL segment we can either have a page file or a route file, but not both
-- if you want to show something to the user, you need to use a page file
+### 🔁 Summary
 
-Getting a Single Object
-_create endpoint for getting a single object_
+- To build APIs, you create a `route.ts` file in a route directory. You cannot have both a `page.tsx` and `route.ts` in the same folder.
+- Route files define **route handlers**—functions mapped to HTTP methods like `GET`, `POST`, `PUT`, `PATCH`, or `DELETE`.
+- Use **POST** to create resources, **PUT/PATCH** to update, and **DELETE** to remove.
+- Use **status codes** to clearly communicate the result:
+  - `200 OK` – Success
+  - `201 Created` – Resource was created
+  - `400 Bad Request` – Validation or client-side issue
+  - `404 Not Found` – Resource doesn't exist
+  - `500 Internal Server Error` – Server-side issue
+- You can test API endpoints using tools like **Postman**.
 
-Creating an Object
+---
 
-- to create a user, we send a request to the user's endpoint include a user object in the body of the request
+### 🧪 Data Validation with Zod
 
-Updating an Object
+- Validating input from clients is **non-negotiable**. You can use plain `if` statements for simple structures...
+- ...but for **robust, reusable validation**, use [Zod](https://zod.dev/).
+- Zod lets you define a schema like:
 
-- update a user, we should send a request to the endpoint that represents an individual user, like users/1
-- so we send the request and include the updated user object in the body of the request
+```ts
+const userSchema = z.object({
+  name: z.string().min(3),
+  email: z.string().email(),
+});
+```
 
-Deleteing an Object
+- Then validate like:
 
-- to delete a user, we send a request to the endpoint that represents an individual user, like users/1
+```ts
+const result = userSchema.safeParse(req.body);
+if (!result.success) return NextResponse.json(result.error.errors, { status: 400 });
+```
 
-Validating Requests with Zod
+---
 
-- Zod is a TypeScript-first schema declaration and validation library
-- it allows us to define a schema for our data and then validate that data against the schema
-- our example we used an if statement to check if the user object was valid which is for simple Objects
-- but for more complex objects, we'll end up with too many if statements
-- that's why you should use a validation library like Zod (https://zod.dev/)
+### 🧠 Concept Reinforcement
 
-_Excercise_
+- Dynamic segments like `[id]` are used to map API logic to data.
+- For CRUD actions, direct your request to the matching endpoint:
+  - `GET /api/users` – list users
+  - `POST /api/users` – create user
+  - `GET /api/users/1` – fetch single user
+  - `PUT /api/users/1` – update user
+  - `DELETE /api/users/1` – delete user
 
-- implement and api for managing products
-- so when we hit slash api/products, we get an array of product objects, each product object has 3 properties: id, name, and price
+---
+
+## 🏁 Exercise
+
+- Create `/api/products` that returns a list of objects like `{ id, name, price }`.
+
+---
+
+### 🚀 Final Commit
+
+Use this alias for your last commit:
+
+```bash
+sum finished building-api section and updated README
+```
+
+Then merge and push:
+
+```bash
+mergeback building-api
+git push
+```
