@@ -1,4 +1,6 @@
+import schema from "@/app/users/schema";
 import { NextRequest, NextResponse } from "next/server";
+// import our schema
 
 export function GET(
   request: NextRequest,
@@ -22,14 +24,21 @@ export async function PUT(
   // validate the request body
   // if invalid, return 400 bad request
   const body = await request.json();
-  if (!body.name)
-    return NextResponse.json({ error: "Name is required" }, { status: 400 });
-  // fetch the user with the given id from the db
-  // if not found, return 404 (user not found)
-  if (params.id > 10)
-    return NextResponse.json({ error: "User not found" }, { status: 404 });
-  // else update the user and return the updated user
-  return NextResponse.json({ id: 1, name: body.name }, { status: 200 });
+  // instead of using an if statement, we can use safeParse
+  // we also have a parse method, the difference is that the parse method will throw an error if the data is invalid
+  // but safeParse doesn't yell at us, it just returns an object with a success property
+  const validation = schema.safeParse(body);
+  if (!validation.success) {
+    // here we don't want to hard code the error message
+    // we want to return the error message that are detected by zod
+    return NextResponse.json(validation.error.errors, { status: 400 });
+    // fetch the user with the given id from the db
+    // if not found, return 404 (user not found)
+    if (params.id > 10)
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    // else update the user and return the updated user
+    return NextResponse.json({ id: 1, name: body.name }, { status: 200 });
+  }
 }
 
 export async function DELETE(

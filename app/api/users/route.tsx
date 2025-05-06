@@ -1,3 +1,4 @@
+import schema from "@/app/users/schema";
 import { NextRequest, NextResponse } from "next/server";
 
 // we didn't use request in this example, but if you remove it, Next.js will cache the response. so  next time we hit this endpoint, it will return the cached response
@@ -20,7 +21,8 @@ export async function POST(request: NextRequest) {
   // in a real world app, once we read the body of the request, then we need to validate it.
   // if invalid, return 400 bad request
   // else, return 201 created
-  if (!body.name)
-    return NextResponse.json({ error: "Name is required" }, { status: 400 });
+  const validation = schema.safeParse(body);
+  if (!validation.success)
+    return NextResponse.json(validation.error.errors, { status: 400 });
   return NextResponse.json({ id: 1, name: body.name }, { status: 201 });
 }

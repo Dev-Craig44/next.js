@@ -26,3 +26,11 @@ Updating an Object
 Deleteing an Object
 
 - to delete a user, we send a request to the endpoint that represents an individual user, like users/1
+
+Validating Requests with Zod
+
+- Zod is a TypeScript-first schema declaration and validation library
+- it allows us to define a schema for our data and then validate that data against the schema
+- our example we used an if statement to check if the user object was valid which is for simple Objects
+- but for more complex objects, we'll end up with too many if statements
+- that's why you should use a validation library like Zod (https://zod.dev/)
