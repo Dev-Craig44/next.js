@@ -31,3 +31,20 @@ export async function PUT(
   // else update the user and return the updated user
   return NextResponse.json({ id: 1, name: body.name }, { status: 200 });
 }
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { id: number } }
+) {
+  // fetch the user with the given id from the db
+  // if not found, return 404 (user not found)
+  if (params.id > 10)
+    return NextResponse.json({ error: "User not found" }, { status: 404 });
+  // else delete the user and return a 200 status code
+  // in a real world app, you would return the deleted user
+  // or a message saying the user was deleted successfully
+  return NextResponse.json(
+    { message: "User deleted successfully" },
+    { status: 200 }
+  );
+}

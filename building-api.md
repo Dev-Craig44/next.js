@@ -22,3 +22,7 @@ Updating an Object
 
 - update a user, we should send a request to the endpoint that represents an individual user, like users/1
 - so we send the request and include the updated user object in the body of the request
+
+Deleteing an Object
+
+- to delete a user, we send a request to the endpoint that represents an individual user, like users/1
