@@ -34,3 +34,8 @@ Validating Requests with Zod
 - our example we used an if statement to check if the user object was valid which is for simple Objects
 - but for more complex objects, we'll end up with too many if statements
 - that's why you should use a validation library like Zod (https://zod.dev/)
+
+_Excercise_
+
+- implement and api for managing products
+- so when we hit slash api/products, we get an array of product objects, each product object has 3 properties: id, name, and price
