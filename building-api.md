@@ -12,3 +12,5 @@ Getting a Collection of Objects
 - if you want to show something to the user, you need to use a page file
 
 _create endpoint for getting a single object_
+
+- to create a user, we send a request to the user's endpoint include a user object in the body of the request
