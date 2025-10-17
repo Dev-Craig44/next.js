@@ -1,4 +1,4 @@
-# NEXT.js
+s# NEXT.js
 
 ## Overview
 
@@ -118,3 +118,10 @@ For example: `ProductCard` becomes `ProductCard_Kyhe2`.
 Some believe inline styling violates the separation of concerns principle. However, the principle is about organizing code into distinct sections or modules, each with its own concerns. Tailwind CSS helps by only including the utility classes used in the final bundle, improving performance.
 
 While CSS files can grow messy as projects scale, Tailwind CSS avoids this by keeping styles modular and scoped to the markup.
+
+## Database Integration with Prisma
+
+- Setting up Prisma
+- Defining data models
+- Creating migrations
+- Performing CRUD operations
