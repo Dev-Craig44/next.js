@@ -125,3 +125,11 @@ While CSS files can grow messy as projects scale, Tailwind CSS avoids this by ke
 - Defining data models
 - Creating migrations
 - Performing CRUD operations
+
+## Installing MySQL
+
+Database Engines:
+
+- MySQL
+- Postgres
+- MongoDB
