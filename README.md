@@ -1,120 +1,614 @@
-# NEXT.js
+# Next.js Learning Repository
 
-## Overview
+> A comprehensive collection of Next.js projects, tutorials, and documentation following my learning journey from basics to advanced concepts.
 
-Next.js is a framework for building fast and search-engine-friendly applications. It enables full-stack development by providing:
+## 📁 Project Structure
 
-- A compiler for transforming and minifying JavaScript code.
-- A Command-line Interface (CLI) for building and starting applications.
-- A Node.js runtime for running backend code.
+This repository contains multiple Next.js projects and learning materials:
 
-With Next.js, we can render components on the server and return their content to the client, a technique called **Server-side Rendering (SSR)**. This makes applications search-engine friendly. Additionally, we can pre-render pages and components with static data during the build process, a technique called **Static Site Generation (SSG)**, to further improve performance.
-
----
-
-## Key Features
-
-### App Router vs. Pages Router
-
-- The **new app router** in Next.js 13 simplifies route creation by allowing route segments to be defined as directories. To make a route public, add a `page.js`, `page.jsx`, or `page.tsx` file in the corresponding directory.
-- In the **pages router**, files like `test.css` in the same directory as `page.tsx` would be publicly accessible (e.g., `/test.css`).
-
-### Improved SEO with the App Router
-
-- Most components in the app router are **server components**, rendered on the server and sent to the client as HTML. This allows search engines to crawl the content more easily, improving SEO.
-- The pages router relies more on **client-side rendering**, which can make it harder for search engines to index content.
-
-### Rendering Options
-
-Rendering can happen on the **client side** or the **server side**:
-
-- **Client-side Rendering (CSR)**: Always dynamic, rendered in the browser.
-- **Server-side Rendering (SSR)**: Rendered on the server, either:
-  - **Static Rendering**: At build time, served as static HTML.
-  - **Dynamic Rendering**: At request time, served as dynamic HTML.
-
-### Static Rendering
-
-- Static pages are cached during production and do not re-render on the client side.
-- Use `cache: "no-store"` to force re-rendering on the client side.
+- **`next-app/`** - Main Next.js application with practical implementations
+- **`recap/`** - Comprehensive tutorial materials and examples
+- **`routingAndNavigation/`** - Routing and navigation examples
 
 ---
 
-## Key Terms
+## 🚀 Getting Started
 
-- **Client Components**: Rendered on the client within a web browser.
-- **Client-side Rendering (CSR)**: Traditional React rendering in the browser.
-- **Dynamic Rendering**: Rendering at request time.
-- **Node.js Runtime**: Environment for running server-side code.
-- **Server Components**: Rendered on the server within a Node.js runtime.
-- **Server-side Rendering (SSR)**: Rendering on the server.
-- **Static Rendering**: Rendering at build time.
-- **Static Site Generation (SSG)**: Pre-rendering static pages during the build process.
+Next.js is a React framework for building fast and search-engine-friendly applications. It provides:
 
----
+- **Compiler**: Transforms and minifies JavaScript code
+- **CLI**: Command-line interface for building applications
+- **Node.js Runtime**: Environment for running backend code
+- **Server-Side Rendering (SSR)**: Better SEO and performance
+- **Static Site Generation (SSG)**: Pre-rendered pages for speed
 
-## Summary
-
-- Next.js provides **client** and **server components** introduced in React 18.
-  - **Client Components**: Handle browser events, access browser APIs, and use state or effect hooks.
-  - **Server Components**: Reduce bundle sizes, improve performance, enhance SEO, and increase security. However, they cannot handle browser events or use state/effect hooks.
-- By default, all components and pages in the `/app` directory are **server components**. To make a component a client component, add the `'use client'` directive at the top of the file.
-- Next.js enhances the `fetch()` function with automatic caching, improving performance and reducing redundant data retrieval.
-- Components can be rendered at **build time** (Static Rendering) or **request time** (Dynamic Rendering).
-
----
-
-## Getting Started with Next.js
-
-### Creating a New Project
+### Quick Setup
 
 ```bash
-npx create-next-app
-```
+# Create new Next.js project
+npx create-next-app@latest my-app
+cd my-app
 
-### Running the Development Server
-
-```bash
-npm run dev
-```
-
-### Building the Application
-
-```bash
-npm run build
-```
-
-### Starting the Application in Production Mode
-
-```bash
-npm start
+# Development server
+npm run dev          # Start development at http://localhost:3000
+npm run build        # Build for production
+npm start           # Start production server
 ```
 
 ---
 
-## Additional Notes
+## 📚 Learning Journey
 
-- **Client-side Navigation**: Next.js provides the `Link` component for smooth client-side navigation, enabling quick content loading without full page reloads.
-- **Data Fetching**: Server components are ideal for fetching data as they avoid extra server trips, making applications faster and more search-engine friendly.
+### 1. 🏁 **Fundamentals & Setup**
+
+_From commits: Initial setup, Hello World_
+
+#### Project Creation
+
+```bash
+npx create-next-app@latest
+```
+
+#### Basic Page Structure
+
+```jsx
+// app/page.tsx - Hello World
+export default function Home() {
+  return <h1>Hello World</h1>;
+}
+```
+
+#### Key Concepts
+
+- **App Router**: Modern file-based routing (Next.js 13+)
+- **Server Components**: Default rendering on server
+- **Client Components**: Use `'use client'` for interactivity
 
 ---
 
-## Styling in Next.js
+### 2. 🔗 **Components & Navigation**
 
-I'm learning global styles, CSS modules, Tailwind CSS, and DaisyUI in Next.js. I will add more information about these topics later.
+_From commits: Link component, client components_
 
-This project uses a tool called PostCSS for transforming our CSS class names.  
-For example: `ProductCard` becomes `ProductCard_Kyhe2`.
+#### Link Component
 
-### Tailwind CSS Utilities
+```jsx
+import Link from "next/link";
 
-- **Spacing**: `px`, `py`, `pt`, `pb`, `pl`, `pr`, `mx`, `my`, `mt`, `mb`, `ml`, `mr`
-- **Size**: `text-sm`, `text-lg`, `text-2xl`
-- **Colors**: `text-red-500`, `bg-blue-200`
-- **Thickness**: `font-thin`, `font-light`, `font-normal`, `font-medium`, `font-semibold`, `font-bold`
+export default function Navigation() {
+  return (
+    <nav>
+      <Link href="/users">Users</Link>
+      <Link href="/products">Products</Link>
+    </nav>
+  );
+}
+```
 
-### Why Use Tailwind CSS?
+#### Client vs Server Components
 
-Some believe inline styling violates the separation of concerns principle. However, the principle is about organizing code into distinct sections or modules, each with its own concerns. Tailwind CSS helps by only including the utility classes used in the final bundle, improving performance.
+```jsx
+// Server Component (default) - for static content
+export default function ServerComponent() {
+  return <h1>Static Content</h1>
+}
 
-While CSS files can grow messy as projects scale, Tailwind CSS avoids this by keeping styles modular and scoped to the markup.
+// Client Component - for interactivity
+'use client'
+import { useState } from 'react'
+
+export default function ClientComponent() {
+  const [count, setCount] = useState(0)
+  return <button onClick={() => setCount(count + 1)}>{count}</button>
+}
+```
+
+---
+
+### 3. 📊 **Data Fetching & Caching**
+
+_From commits: Server components, caching options_
+
+#### Server Component Data Fetching
+
+```jsx
+// Cached by default
+async function UsersPage() {
+  const users = await fetch("https://jsonplaceholder.typicode.com/users");
+  const data = await users.json();
+
+  return (
+    <div>
+      {data.map((user) => (
+        <p key={user.id}>{user.name}</p>
+      ))}
+    </div>
+  );
+}
+
+// Force fresh data
+async function DynamicUsersPage() {
+  const users = await fetch("https://jsonplaceholder.typicode.com/users", {
+    cache: "no-store", // No caching
+  });
+  const data = await users.json();
+
+  return (
+    <div>
+      {data.map((user) => (
+        <p key={user.id}>{user.name}</p>
+      ))}
+    </div>
+  );
+}
+```
+
+#### Caching Options
+
+- `cache: 'force-cache'` - Default, cache forever
+- `cache: 'no-store'` - No caching, always fetch fresh
+- `next: { revalidate: 60 }` - Revalidate every 60 seconds
+
+---
+
+### 4. 🎨 **Styling Approaches**
+
+_From commits: Global styles, CSS modules, Tailwind, DaisyUI_
+
+#### Global Styles
+
+```css
+/* app/globals.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: blue;
+}
+```
+
+#### CSS Modules
+
+```css
+/* ProductCard.module.css */
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+}
+```
+
+```jsx
+// ProductCard.tsx
+import styles from "./ProductCard.module.css";
+
+export default function ProductCard() {
+  return <div className={styles.card}>Product</div>;
+}
+```
+
+#### Tailwind CSS
+
+```jsx
+// Utility-first approach
+export default function TailwindCard() {
+  return (
+    <div className="border border-gray-300 rounded-lg p-4 bg-white shadow-md">
+      <h2 className="text-xl font-bold text-gray-800">Product Title</h2>
+      <p className="text-gray-600 mt-2">Product description</p>
+    </div>
+  );
+}
+```
+
+#### DaisyUI Integration
+
+```javascript
+// tailwind.config.js
+module.exports = {
+  plugins: [require("daisyui")],
+  daisyui: {
+    themes: ["light", "dark"],
+  },
+};
+```
+
+```jsx
+// Using DaisyUI components
+export default function DaisyCard() {
+  return (
+    <div className="card w-96 bg-base-100 shadow-xl">
+      <div className="card-body">
+        <h2 className="card-title">Card title!</h2>
+        <p>Description here</p>
+        <div className="card-actions justify-end">
+          <button className="btn btn-primary">Buy Now</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+---
+
+### 5. 🧭 **Routing & Navigation**
+
+_From commits: Dynamic routes, catch-all segments, query parameters_
+
+#### File-Based Routing Structure
+
+```
+app/
+├── page.tsx              # /
+├── users/
+│   ├── page.tsx          # /users
+│   ├── [id]/
+│   │   ├── page.tsx      # /users/123
+│   │   └── photos/
+│   │       └── [photoId]/
+│   │           └── page.tsx  # /users/123/photos/456
+│   └── new/
+│       └── page.tsx      # /users/new
+└── products/
+    └── [[...slug]]/
+        └── page.tsx      # /products, /products/electronics, /products/electronics/phones
+```
+
+#### Dynamic Routes
+
+```jsx
+// app/users/[id]/page.tsx
+interface Props {
+  params: { id: string };
+}
+
+export default function UserDetail({ params }: Props) {
+  return <h1>User {params.id}</h1>;
+}
+```
+
+#### Catch-All Routes
+
+```jsx
+// app/products/[[...slug]]/page.tsx
+interface Props {
+  params: { slug?: string[] };
+}
+
+export default function ProductPage({ params }: Props) {
+  const { slug = [] } = params;
+
+  if (slug.length === 0) return <h1>All Products</h1>;
+  if (slug.length === 1) return <h1>Category: {slug[0]}</h1>;
+  if (slug.length === 2)
+    return (
+      <h1>
+        Product: {slug[1]} in {slug[0]}
+      </h1>
+    );
+
+  return <h1>Not Found</h1>;
+}
+```
+
+#### Query Parameters & Sorting
+
+```jsx
+// app/users/page.tsx
+interface Props {
+  searchParams: { sortOrder?: string };
+}
+
+export default function UsersPage({ searchParams }: Props) {
+  const { sortOrder } = searchParams;
+
+  return (
+    <div>
+      <Link href="/users?sortOrder=name">Sort by Name</Link>
+      <Link href="/users?sortOrder=email">Sort by Email</Link>
+      <UserTable sortOrder={sortOrder} />
+    </div>
+  );
+}
+```
+
+#### Programmatic Navigation
+
+```jsx
+"use client";
+import { useRouter } from "next/navigation";
+
+export default function NavigationExample() {
+  const router = useRouter();
+
+  const handleSubmit = () => {
+    // After form submission
+    router.push("/users");
+  };
+
+  return <button onClick={handleSubmit}>Go to Users</button>;
+}
+```
+
+---
+
+### 6. 🏗️ **Layouts & Error Handling**
+
+_From commits: Custom layouts, loading UIs, error handling, not-found pages_
+
+#### Custom Layouts
+
+```jsx
+// app/admin/layout.tsx
+export default function AdminLayout({
+  children,
+}: {
+  children: React.ReactNode,
+}) {
+  return (
+    <div>
+      <h1>Admin Panel</h1>
+      <nav>Admin Navigation</nav>
+      {children}
+    </div>
+  );
+}
+```
+
+#### Loading UI
+
+```jsx
+// app/users/loading.tsx
+export default function Loading() {
+  return <p>Loading users...</p>;
+}
+```
+
+#### Error Handling
+
+```jsx
+// app/error.tsx
+'use client'
+
+interface Props {
+  error: Error
+  reset: () => void
+}
+
+export default function Error({ error, reset }: Props) {
+  return (
+    <div>
+      <h1>An unexpected error occurred</h1>
+      <p>{error.message}</p>
+      <button onClick={reset}>Try again</button>
+    </div>
+  )
+}
+```
+
+#### Custom Not Found
+
+```jsx
+// app/users/[id]/not-found.tsx
+export default function UserNotFound() {
+  return <h1>This user does not exist</h1>
+}
+
+// Usage in page component
+import { notFound } from 'next/navigation'
+
+export default function UserPage({ params }: { params: { id: string } }) {
+  if (parseInt(params.id) > 10) notFound()
+
+  return <h1>User {params.id}</h1>
+}
+```
+
+---
+
+### 7. � **API Development & CRUD**
+
+_From commits: API routes, CRUD operations, Zod validation_
+
+#### API Route Structure
+
+```
+app/api/
+├── users/
+│   ├── route.tsx         # GET /api/users, POST /api/users
+│   └── [id]/
+│       └── route.tsx     # GET, PUT, DELETE /api/users/123
+└── products/
+    ├── route.tsx
+    └── [id]/
+        └── route.tsx
+```
+
+#### Basic API Routes
+
+```jsx
+// app/api/users/route.tsx
+import { NextRequest, NextResponse } from "next/server";
+
+// GET /api/users
+export async function GET() {
+  return NextResponse.json([
+    { id: 1, name: "John" },
+    { id: 2, name: "Jane" },
+  ]);
+}
+
+// POST /api/users
+export async function POST(request: NextRequest) {
+  const body = await request.json();
+
+  return NextResponse.json({ id: 3, name: body.name }, { status: 201 });
+}
+```
+
+#### Dynamic API Routes
+
+```jsx
+// app/api/users/[id]/route.tsx
+interface Props {
+  params: { id: string };
+}
+
+// GET /api/users/123
+export async function GET(request: NextRequest, { params }: Props) {
+  const user = { id: params.id, name: "John" };
+
+  if (!user) {
+    return NextResponse.json({ error: "User not found" }, { status: 404 });
+  }
+
+  return NextResponse.json(user);
+}
+
+// PUT /api/users/123
+export async function PUT(request: NextRequest, { params }: Props) {
+  const body = await request.json();
+
+  return NextResponse.json({ id: params.id, ...body });
+}
+
+// DELETE /api/users/123
+export async function DELETE(request: NextRequest, { params }: Props) {
+  return NextResponse.json({}, { status: 200 });
+}
+```
+
+#### Validation with Zod
+
+```jsx
+// schemas/userSchema.ts
+import { z } from "zod";
+
+export const userSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email format"),
+  age: z.number().min(18, "Must be at least 18"),
+});
+
+// app/api/users/route.tsx
+import { userSchema } from "@/schemas/userSchema";
+
+export async function POST(request: NextRequest) {
+  const body = await request.json();
+
+  const validation = userSchema.safeParse(body);
+  if (!validation.success) {
+    return NextResponse.json(validation.error.errors, { status: 400 });
+  }
+
+  // Process valid data
+  return NextResponse.json(validation.data, { status: 201 });
+}
+```
+
+---
+
+### 8. �️ **Database Integration with Prisma**
+
+_From commits: Prisma intro, MySQL setup_
+
+#### Current Learning Focus
+
+Setting up Prisma ORM with MySQL for database operations.
+
+#### Installation & Setup
+
+```bash
+npm install prisma @prisma/client
+npx prisma init
+```
+
+#### Supported Databases
+
+- **MySQL** - Currently learning (popular relational database)
+- **PostgreSQL** - Advanced relational database
+- **MongoDB** - NoSQL document database
+- **SQLite** - Lightweight file-based database
+
+#### Next Steps
+
+1. Define data models in `schema.prisma`
+2. Create database migrations
+3. Generate Prisma client
+4. Implement CRUD operations with type safety
+
+---
+
+## 🔧 **Development Tools & Tips**
+
+### Essential VS Code Extensions
+
+- ES7+ React/Redux/React-Native snippets
+- Tailwind CSS IntelliSense
+- Prisma extension
+- Auto Rename Tag
+
+### Performance Tips
+
+- Use Server Components by default
+- Client Components only when needed (interactivity)
+- Implement proper caching strategies
+- Optimize images with Next.js Image component
+
+### Common Issues & Solutions
+
+- **Next.js 15 Breaking Changes**: Always await `params` and `searchParams`
+- **DaisyUI Setup**: Ensure proper PostCSS configuration
+- **&apos; Issue**: Handle apostrophes in not-found files correctly
+
+---
+
+## � **Learning Progress Tracking**
+
+### ✅ **Completed (Based on Commits)**
+
+- [x] Project setup and Hello World
+- [x] Link component and navigation
+- [x] Client vs Server components
+- [x] Data fetching and caching
+- [x] Global styles and CSS modules
+- [x] Tailwind CSS and DaisyUI integration
+- [x] File-based routing and dynamic routes
+- [x] Query parameters and programmatic navigation
+- [x] Custom layouts and error handling
+- [x] Loading UIs and not-found pages
+- [x] API routes and CRUD operations
+- [x] Request validation with Zod
+
+### 🚧 **Currently Learning**
+
+- [ ] Database integration with Prisma
+- [ ] MySQL setup and configuration
+- [ ] Database migrations and schema design
+
+### 📋 **Upcoming Topics**
+
+- [ ] Authentication and authorization
+- [ ] File uploads and image handling
+- [ ] Real-time features with WebSockets
+- [ ] Testing strategies (Jest, Cypress)
+- [ ] Deployment and optimization
+- [ ] Internationalization (i18n)
+
+---
+
+## 🔗 **Resources**
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS Docs](https://tailwindcss.com/docs)
+- [DaisyUI Components](https://daisyui.com/components/)
+- [Prisma Documentation](https://www.prisma.io/docs)
+- [Zod Validation](https://zod.dev/)
+
+---
+
+_This README follows my actual learning progression through Next.js, from basic setup to advanced database integration._
