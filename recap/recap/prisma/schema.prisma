@@ -1,0 +1,15 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// This generator is for genrating the Prisma Client, which you'll use to read and write data in your database. 
+generator client {
+  provider = "prisma-client-js"
+}
+// This datasource is where we specify the database connection URL and the database provider.
+// Change the provider to "mysql" to use a MySQL database.
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
