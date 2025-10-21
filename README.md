@@ -698,3 +698,76 @@ model User {
 - `@unique` constraint prevents duplicate values
 - `@db.VarChar(255)` specifies exact database column type
 - Auto-incrementing primary keys are standard for relational databasesj
+
+## 11. Creating Migrations
+
+- As we define or change our models, we have to create migrations. These migrations are used to keep our database schema in sync with our Prisma schema.
+
+- In the terminal, we're going to run the command `npx prisma migrate dev`. This command will create a new migration based on the changes in our Prisma schema and apply it to the database.
+
+---
+
+## 📝 **Recent Development Notes**
+
+### Prisma Migrations & Database Management
+
+_Latest commits: "🗄️ create initial database migration", "🔄 add registered_at field to User model"_
+
+**What was accomplished:**
+
+- Successfully created and ran initial Prisma migration (`20251021045753_intitial`)
+- Added `registered_at` field to User model with second migration (`20251021051822_add_registered_at`)
+- Established MySQL database (`nextapp`) using MySQL Workbench
+- Set up proper database connection with credentials: `mysql://root:MyP@ssw0d@localhost:3306/nextapp`
+- Downloaded and configured DataGrip as additional database management tool
+
+**Migration Commands Used:**
+
+```bash
+# Create and apply migration
+npx prisma migrate dev --name initial
+
+# Push schema changes without formal migration
+npx prisma db push
+```
+
+**Database Tools Setup:**
+
+- **MySQL Workbench**: Primary GUI tool for MySQL database management
+  - Successfully connected to local MySQL instance
+  - Created `nextapp` database through SQL commands
+  - Verified table creation and schema structure
+- **DataGrip**: Professional database IDE by JetBrains
+  - Downloaded for enhanced database development experience
+  - Provides advanced SQL editing and debugging capabilities
+  - Better integration with development workflow
+
+**Key learning points:**
+
+- Migrations track database schema changes over time
+- `migrate dev` creates formal migration files for version control
+- `db push` is faster for development but doesn't create migration history
+- Multiple database tools can be used simultaneously for different purposes
+- MySQL Workbench is great for visual database management
+- DataGrip offers more powerful development features
+
+**Current Database Schema:**
+
+```sql
+-- User table with registered_at field
+CREATE TABLE `User` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(255) NOT NULL,
+    `email` VARCHAR(255) NOT NULL,
+    `registered_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    UNIQUE INDEX `User_email_key`(`email`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+### Next Steps
+
+- Continue with Prisma Client generation and usage
+- Implement CRUD operations in Next.js API routes
+- Explore advanced Prisma features (relations, querying)
+- Set up proper development vs production database environments
