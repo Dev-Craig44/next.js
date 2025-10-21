@@ -667,3 +667,34 @@ _Upcoming commit: "🔒 add .env to .gitignore for security"_
 - Add `.env` file to `.gitignore` to prevent committing sensitive database credentials
 - Ensure environment variables remain local and secure
 - Continue with Prisma schema definition and migrations
+
+### 10. Defining Data Models
+
+_Latest commit: "📊 define User model in Prisma schema with validation rules"_
+
+**What was accomplished:**
+
+- Defined User model in `schema.prisma` with proper field types and constraints
+- Added validation rules: `@db.VarChar(255)` for name and email fields
+- Set up primary key with `@id @default(autoincrement())` for auto-incrementing IDs
+- Configured email field as unique to prevent duplicate accounts
+- Established foundation for user management system
+
+**Prisma Schema Structure:**
+
+```prisma
+// prisma/schema.prisma
+model User {
+  id    Int    @id @default(autoincrement())
+  name  String @db.VarChar(255)
+  email String @unique @db.VarChar(255)
+}
+```
+
+**Key learning points:**
+
+- Models represent database tables in Prisma
+- Field types map to database column types
+- `@unique` constraint prevents duplicate values
+- `@db.VarChar(255)` specifies exact database column type
+- Auto-incrementing primary keys are standard for relational databasesj
