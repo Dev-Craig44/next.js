@@ -1,15 +1,24 @@
 import schema from "@/app/users/schema";
 import { NextRequest, NextResponse } from "next/server";
+// 1.) import our prisma client
+import { prisma } from "@/prisma/client";
 
 // we didn't use request in this example, but if you remove it, Next.js will cache the response. so  next time we hit this endpoint, it will return the cached response
 // to prevent caching we need to use this request object
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function GET(request: NextRequest) {
+// 3.) make the function async to use await inside
+export async function GET(request: NextRequest) {
+  // 2.) use prisma client to fetch users
+  const users = await prisma.user.findMany();
+  //  You can optional provide an object to findMany to filter, sort, paginate, etc.
+  // prisma.user.findMany({
+  //   where: {
+  //     //  example filter
+  //     email: ''
+  //   }
+  // });
   // fetch users from a db (future)
-  return NextResponse.json([
-    { id: 1, name: "John Doe" },
-    { id: 2, name: "Jane Doe" },
-  ]);
+  return NextResponse.json(users);
 }
 
 export async function POST(request: NextRequest) {

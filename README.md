@@ -804,3 +804,5 @@ if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 - Without global caching, each reload would create a new PrismaClient instance
 - Multiple instances can cause database connection issues and memory leaks
 - This pattern follows official Prisma + Next.js documentation recommendations
+
+## Getting Data

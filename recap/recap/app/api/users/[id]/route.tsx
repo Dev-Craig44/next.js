@@ -1,18 +1,28 @@
 import schema from "@/app/users/schema";
 import { NextRequest, NextResponse } from "next/server";
+// 4.)  import our prisma client
+import { prisma } from "@/prisma/client";
 // import our schema
 
-export function GET(
+export async function GET(
   request: NextRequest,
   { params }: { params: { id: number } }
 ) {
+  // 5.) fetch use by using `prisma.user.findUnique` or `prisma.user.findFirst`
+  const user = await prisma.user.findUnique({
+    where: {
+      id: params.id,
+    },
+  });
   // fetch users from a db (future)
   // if not found, return 404
   // else return data
-  if (params.id > 10)
+  // 6.) If the user is not found, return a 404 response, so we would have to change our logic here to check if user is null
+  if (!user) {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
-
-  return NextResponse.json({ id: 1, name: "Craig" });
+  }
+  // 7.) if found, return the user in the response
+  return NextResponse.json(user);
 }
 
 // you can use put or patch
