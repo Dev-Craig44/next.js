@@ -771,3 +771,5 @@ CREATE TABLE `User` (
 - Implement CRUD operations in Next.js API routes
 - Explore advanced Prisma features (relations, querying)
 - Set up proper development vs production database environments
+
+## 12. Creating a Prisma Client
