@@ -773,3 +773,34 @@ CREATE TABLE `User` (
 - Set up proper development vs production database environments
 
 ## 12. Creating a Prisma Client
+
+- After creating our migrations, we need to create a Prisma client to interact with our database from our Next.js application.
+
+- We create a `prisma/client.ts` file to centralize our Prisma client instance and ensure we follow Next.js best practices.
+
+**Next.js Optimized Client Pattern:**
+
+```typescript
+// prisma/client.ts
+import { PrismaClient } from "@prisma/client";
+
+const globalForPrisma = global as unknown as { prisma: PrismaClient };
+
+export const prisma = globalForPrisma.prisma || new PrismaClient();
+
+if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+```
+
+**Key Benefits:**
+
+- **Singleton Pattern**: Ensures only one PrismaClient instance exists
+- **Fast Refresh Support**: Prevents multiple client instances during Next.js development
+- **Global Caching**: Uses global object to cache client across module reloads
+- **Production Safety**: Only caches in development environment
+
+**Why This Pattern:**
+
+- Next.js Fast Refresh can cause modules to reload during development
+- Without global caching, each reload would create a new PrismaClient instance
+- Multiple instances can cause database connection issues and memory leaks
+- This pattern follows official Prisma + Next.js documentation recommendations
