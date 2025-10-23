@@ -806,3 +806,35 @@ if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 - This pattern follows official Prisma + Next.js documentation recommendations
 
 ## Getting Data
+
+_From commits: Building API routes, User management endpoints_
+
+Successfully implemented API routes for data retrieval using Prisma ORM:
+
+### 13. **API Route Handlers**
+
+Created RESTful API endpoints for user management:
+
+- **`/api/users`** - GET all users from database
+- **`/api/users/[id]`** - GET, PUT, DELETE individual users
+- **URL Parameter Handling** - Updated type definitions from `{id: number}` to `{id: string}` since URL parameters are always strings
+- **Prisma Integration** - Used `prisma.user.findUnique()` and `prisma.user.findMany()` for database queries
+- **Error Handling** - Implemented proper 404 responses for non-existent users
+- **Data Validation** - Integrated Zod schemas for request validation
+
+### Key Implementation Details:
+
+```typescript
+// Type-safe parameter handling
+{ params }: { params: { id: string } }
+
+// Database queries with Prisma
+const user = await prisma.user.findUnique({
+  where: { id: params.id }
+});
+
+// Proper error responses
+if (!user) {
+  return NextResponse.json({ error: "User not found" }, { status: 404 });
+}
+```

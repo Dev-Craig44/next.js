@@ -6,12 +6,14 @@ import { prisma } from "@/prisma/client";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: number } }
+  // 8.) Because at run time, what we provided (params: { id: number }) is not valid, we need to change it to string. Because the values in the URL are always strings.
+  { params }: { params: { id: string } }
 ) {
   // 5.) fetch use by using `prisma.user.findUnique` or `prisma.user.findFirst`
   const user = await prisma.user.findUnique({
     where: {
-      id: params.id,
+      // 9.) convert the id to a number using parseInt
+      id: parseInt(params.id),
     },
   });
   // fetch users from a db (future)
