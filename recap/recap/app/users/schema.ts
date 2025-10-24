@@ -5,6 +5,8 @@ import { z } from "zod";
 // with more fields and validation rules
 const schema = z.object({
   name: z.string().min(3),
+  // 3.) make email required and validate it as an email
+  email: z.string().email(),
 });
 
 export default schema;
