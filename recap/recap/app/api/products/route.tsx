@@ -1,9 +1,7 @@
 import schema from "@/app/products/schema";
 import { NextRequest, NextResponse } from "next/server";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function GET(request: NextRequest) {
-  // fetch products from a db (future)
   return NextResponse.json([
     { id: 1, name: "Product 1", price: 10 },
     { id: 2, name: "Product 2", price: 20 },
