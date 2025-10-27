@@ -838,3 +838,127 @@ if (!user) {
   return NextResponse.json({ error: "User not found" }, { status: 404 });
 }
 ```
+
+---
+
+## 🗄️ Database Integration
+
+_From commits: Prisma setup, MySQL integration, Database schema design_
+
+Successfully integrated MySQL database with Prisma ORM for persistent data storage and management.
+
+### 14. **Database Fundamentals**
+
+**Core Concepts:**
+
+- **Databases** - Permanent data storage systems (MySQL, PostgreSQL, MongoDB)
+- **Database Engines** - Software that manages database operations and storage
+- **Migrations** - Version-controlled database schema changes
+- **Models** - Entity definitions representing application domain objects
+- **Object-Relational Mapper (ORM)** - Tool mapping database records to application objects
+
+**Why Prisma:**
+
+- Most widely-used ORM for Next.js and Node.js applications
+- Type-safe database operations with TypeScript
+- Automatic migration generation and management
+- Excellent developer experience with Prisma Studio
+
+### 15. **Prisma Setup & Configuration**
+
+**Key Commands:**
+
+```bash
+# Initialize Prisma in project
+npx prisma init
+
+# Format schema file
+npx prisma format
+
+# Generate and apply migrations
+npx prisma migrate dev
+```
+
+**Database Connection:**
+
+- Configured MySQL 9.4.0 with MySQL Workbench
+- Environment variables for secure connection strings
+- Connection string format: `mysql://user:password@localhost:3306/database`
+
+### 16. **Data Models & Schema Design**
+
+**User Model Implementation:**
+
+```prisma
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  name         String
+  followers    Int      @default(0)
+  isActive     Boolean  @default(true)
+  registeredAt DateTime @default(now())
+}
+```
+
+**Product Model Implementation:**
+
+```prisma
+model Product {
+  id    Int    @id @default(autoincrement())
+  name  String
+  price Float
+}
+```
+
+### 17. **Prisma Client Operations**
+
+**Core Database Operations:**
+
+```typescript
+// Query all records
+await prisma.user.findMany();
+
+// Find specific record
+await prisma.user.findUnique({ where: { email: "user@example.com" } });
+
+// Create new record
+await prisma.user.create({ data: { name: "John", email: "john@example.com" } });
+
+// Update existing record
+await prisma.user.update({
+  where: { email: "user@example.com" },
+  data: { email: "new@example.com" },
+});
+```
+
+**Client Optimization for Next.js:**
+
+- Global singleton pattern prevents multiple client instances
+- Fast Refresh compatibility with development hot reloading
+- Connection pooling for production performance
+
+### 18. **API Integration & Data Validation**
+
+**Complete CRUD Implementation:**
+
+- **GET `/api/users`** - Retrieve all users with `prisma.user.findMany()`
+- **POST `/api/users`** - Create users with validation and `prisma.user.create()`
+- **GET `/api/users/[id]`** - Get individual user with `prisma.user.findUnique()`
+- **PUT `/api/users/[id]`** - Update user data with proper validation
+- **DELETE `/api/users/[id]`** - Remove users from database
+
+**Data Security & Validation:**
+
+- Zod schema validation for all incoming requests
+- Selective data mapping to prevent malicious property injection
+- Proper HTTP status codes (200, 201, 400, 404)
+- Type-safe URL parameter handling with string conversion
+
+### Key Achievements:
+
+✅ **Database Setup** - MySQL server with Prisma ORM integration  
+✅ **Schema Design** - User and Product models with proper relationships  
+✅ **Migration Management** - Version-controlled database changes  
+✅ **Type Safety** - Full TypeScript integration with auto-generated types  
+✅ **API Security** - Request validation and error handling  
+✅ **Production Ready** - Optimized client configuration and connection management
