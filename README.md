@@ -989,3 +989,5 @@ This one that we're going to us is:
 1. Go to the upload tab in settings
 2. Enable unsigned uploads because it's easier to get started with
 3. Leave the folder name blank for now
+
+### 4. Showing Upload Images
