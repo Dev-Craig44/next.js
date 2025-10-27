@@ -1,34 +1,17 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-// This generator is for genrating the Prisma Client, which you'll use to read and write data in your database. 
 generator client {
   provider = "prisma-client-js"
 }
 
-// This datasource is where we specify the database connection URL and the database provider.
-// Change the provider to "mysql" to use a MySQL database.
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-// 1.) Define a model block to represent a table in your database.
 model User {
-  // 2.) Define an id field with the @id attribute to set it as the primary key.
   id           Int      @id @default(autoincrement())
-  // 3.) Define a email field with the @unique attribute to enforce unique values.
   email        String   @unique
-  // 4.) Define a name field that is optional (can be null).
   name         String
-  // 5.) Define followers with Integer type and the default value of 0.
   followers    Int      @default(0)
-  // 6.) Define a isActive field with Boolean type and the default value of true.
   isActive     Boolean  @default(true)
-  // 7.) Create a new field called RegisteredAt with DateTime type and set its default value to the current timestamp.
   registeredAt DateTime @default(now())
 }
-
-// Now we can ask Prisma CLI to reformat and generate the client for us by running `npx prisma format`.
