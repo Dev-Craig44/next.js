@@ -983,3 +983,9 @@ This one that we're going to us is:
 2. `npm i next-cloudinary` to install the Next.js Cloudinary SDK
 3. Go to google and search `next cloudinary`
 4. Follow the instructions to set up your Cloudinary account and get your cloud name, API key, and API secret.
+
+### 3. Uploading Files to Cloudinary
+
+1. Go to the upload tab in settings
+2. Enable unsigned uploads because it's easier to get started with
+3. Leave the folder name blank for now
