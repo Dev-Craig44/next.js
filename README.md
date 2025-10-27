@@ -976,3 +976,10 @@ await prisma.user.update({
 This one that we're going to us is:
 
 - **Cloudinary** - Because it has perfect integration with Next.js and it has a free tier that allows us to get started without any cost.
+
+### 2. Setting Up Cloudinary
+
+1. Create a Cloudinary account at [cloudinary.com](https://cloudinary.com/)
+2. `npm i next-cloudinary` to install the Next.js Cloudinary SDK
+3. Go to google and search `next cloudinary`
+4. Follow the instructions to set up your Cloudinary account and get your cloud name, API key, and API secret.
