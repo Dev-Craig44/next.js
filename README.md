@@ -1000,3 +1000,113 @@ This one that we're going to us is:
    - File type restrictions and validation rules
    - UI customization and themes
    - Upload presets and transformation settings
+
+---
+
+## 📁 File Upload Integration
+
+_From commits: Cloudinary setup, Upload widget implementation, Image display functionality_
+
+Successfully integrated Cloudinary file upload system with Next.js for seamless media management.
+
+### 19. **Cloudinary Setup & Configuration**
+
+**Installation & Environment Setup:**
+
+```bash
+# Install Next.js Cloudinary SDK
+npm i next-cloudinary
+
+# Environment configuration
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="your-cloud-name"
+```
+
+**Key Configuration Steps:**
+
+- Created Cloudinary account with free tier access
+- Configured environment variables for cloud integration
+- Set up upload presets for unsigned uploads
+- Established secure connection with cloud storage
+
+### 20. **Upload Widget Implementation**
+
+**Basic Upload Component:**
+
+```tsx
+import { CldUploadWidget } from "next-cloudinary";
+
+<CldUploadWidget
+  uploadPreset="your-preset-name"
+  onSuccess={(result) => {
+    console.log("Upload Result:", result);
+  }}
+>
+  {({ open }) => <button onClick={() => open()}>Upload</button>}
+</CldUploadWidget>;
+```
+
+**Advanced Configuration Options:**
+
+```tsx
+<CldUploadWidget
+  uploadPreset="uploadingFiles"
+  options={{
+    sources: ["local"], // File source restrictions
+    maxFiles: 5, // Limit number of uploads
+    multiple: false, // Single file upload
+    styles: {}, // Custom styling
+  }}
+>
+  {({ open }) => <button onClick={() => open()}>Upload</button>}
+</CldUploadWidget>
+```
+
+### 21. **Image Display & State Management**
+
+**State-Driven Image Display:**
+
+```tsx
+const [publicId, setPublicId] = useState("");
+
+// Update state on successful upload
+onSuccess={(result) => {
+  if (result.event !== "success") return;
+  const info = result.info as CloudinaryResult;
+  setPublicId(info.public_id);
+}}
+
+// Conditional image rendering
+{publicId && (
+  <CldImage
+    src={publicId}
+    width={400}
+    height={300}
+    alt="Uploaded Image"
+  />
+)}
+```
+
+### 22. **Upload Widget Customization**
+
+**Available Configuration Options:**
+
+- **Sources**: `['local', 'camera', 'url', 'image_search']`
+- **File Limits**: `maxFiles`, `maxFileSize`, `maxImageFileSize`
+- **Upload Behavior**: `multiple`, `autoUpload`, `cropping`
+- **UI Customization**: `styles`, `text`, `theme`
+- **Validation**: File type restrictions and size limits
+
+**Demo & Documentation:**
+
+- Explore customization at `demo.cloudinary.com/uw`
+- Comprehensive options for upload sources and validation
+- Real-time preview of configuration changes
+
+### Key Achievements:
+
+✅ **Cloud Storage Setup** - Cloudinary integration with Next.js  
+✅ **Upload Widget** - Functional file upload with user interface  
+✅ **Image Display** - Dynamic image rendering after upload  
+✅ **State Management** - React state for upload tracking  
+✅ **Configuration Options** - Customizable upload behavior and UI  
+✅ **Modern API Usage** - Updated from deprecated `onUpload` to `onSuccess`
