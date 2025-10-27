@@ -30,11 +30,26 @@ export async function PUT(
     return NextResponse.json(validation.error.errors, { status: 400 });
   }
 
-  if (parseInt(params.id) > 10) {
+  // 1.) Check to see if the user exists inside the database
+  const user = await prisma.user.findUnique({
+    where: { id: parseInt(params.id) },
+  });
+
+  // 2.) If the user does not exist, return a 404 error
+  if (!user) {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
 
-  return NextResponse.json({ id: 1, name: body.name }, { status: 200 });
+  // 3.) If user exists, update their details
+  const updateUser = await prisma.user.update({
+    where: { id: user.id },
+    // 4.) Provide the new data to update
+    data: {
+      name: body.name,
+      email: body.email,
+    },
+  });
+  return NextResponse.json(updateUser, { status: 200 });
 }
 
 export async function DELETE(
