@@ -962,3 +962,7 @@ await prisma.user.update({
 ✅ **Type Safety** - Full TypeScript integration with auto-generated types  
 ✅ **API Security** - Request validation and error handling  
 ✅ **Production Ready** - Optimized client configuration and connection management
+
+## Uploading Files
+
+- In this section we will be learning how to allow users to upload files to our Next.js application.
