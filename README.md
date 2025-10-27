@@ -991,3 +991,12 @@ This one that we're going to us is:
 3. Leave the folder name blank for now
 
 ### 4. Showing Upload Images
+
+### 5. Customizing the Upload Widget
+
+1. Visit `demo.cloudinary.com/uw` (short for upload widget) to explore customization options
+2. Review the code examples to see the different configuration options available, such as:
+   - Upload sources (local files, camera, URL, etc.)
+   - File type restrictions and validation rules
+   - UI customization and themes
+   - Upload presets and transformation settings

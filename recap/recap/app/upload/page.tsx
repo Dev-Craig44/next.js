@@ -21,6 +21,18 @@ const UploadPage = () => {
       )}
       <CldUploadWidget
         uploadPreset="uploadingFiles"
+        // 1.) Here we can set the options for the upload widget
+        options={{
+          //  2.) Set soures to an array of source which we'll use local
+          sources: ["local"],
+          //   3.) Set multiple to false to only allow a single file upload
+          multiple: false,
+          //   4.) Set the max amount of files to 5
+          maxFiles: 5,
+          //   5.) override the styles for the upload widget and we would refere to the code on the demo site for more options
+          styles: {},
+          //
+        }}
         onSuccess={(result) => {
           if (result.event !== "success") return;
           const info = result.info as CloudinaryResult;
