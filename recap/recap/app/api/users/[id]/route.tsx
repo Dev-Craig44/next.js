@@ -56,9 +56,17 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  if (parseInt(params.id) > 10) {
+  const user = await prisma.user.findUnique({
+    where: { id: parseInt(params.id) },
+  });
+
+  if (!user) {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
+
+  prisma.user.delete({
+    where: { id: user.id },
+  });
 
   return NextResponse.json(
     { message: "User deleted successfully" },
