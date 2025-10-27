@@ -966,3 +966,13 @@ await prisma.user.update({
 ## Uploading Files
 
 - In this section we will be learning how to allow users to upload files to our Next.js application.
+
+### 1. Choosing a Cloud Platform
+
+- Amazon S3
+- Google Cloud
+- Microsoft Azure
+
+This one that we're going to us is:
+
+- **Cloudinary** - Because it has perfect integration with Next.js and it has a free tier that allows us to get started without any cost.
